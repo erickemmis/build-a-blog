@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <style>
+            .error {
+                color: red;
+                font-style: italic;
+                font-size: .9em;
+                display: block;
+            }
+
+            nav {
+                display: inline-block;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!--links for routes-->
+        <nav>
+            <a href="/newpost"> Add a new post</a>
+            |
+            <a href="/blog">Blog</a>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
