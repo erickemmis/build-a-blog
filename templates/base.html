@@ -3,19 +3,7 @@
 <html>
     <head>
         <title>{{title}}</title>
-        <style>
-            .error {
-                color: red;
-                font-style: italic;
-                font-size: .9em;
-                display: block;
-            }
-
-            nav {
-                display: inline-block;
-            }
-
-        </style>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}" />
     </head>
     <body>
         <!--links for routes-->
