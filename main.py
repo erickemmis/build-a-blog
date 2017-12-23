@@ -24,8 +24,13 @@ class Blog(db.Model):
 
 @app.route('/blog')
 def blog():
-    blog = Blog.query.all()
 
+    if len(request.args) == 1:
+        post_id = request.args.get('id')
+        post = Blog.query.filter_by(id=post_id).first()
+        return render_template('post.html', post=post)
+
+    blog = Blog.query.all()
     return render_template('blog.html', blog=blog)
 
 @app.route('/newpost', methods=["POST","GET"])
@@ -49,6 +54,7 @@ def newpost():
 
 
         if valid:
+            #add and commit title and body in a new post if valid
             new_post = Blog(title, body)
             db.session.add(new_post)
             db.session.commit()
@@ -61,7 +67,6 @@ def newpost():
 
     return render_template('newpost.html')
     
-
 
 if __name__ == '__main__':
     app.run()
