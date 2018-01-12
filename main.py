@@ -45,9 +45,9 @@ def newpost():
 
         #check if both title and body are there
         if not blog_post['title']:
-            error['title'] = "Pleae fill in a title"
+            error['title'] = "Please fill in a title"
         if not blog_post['body']:
-            error['body'] = "Pleae fill in a body"
+            error['body'] = "Please fill in a body"
 
 
         if not any(error.values()):
