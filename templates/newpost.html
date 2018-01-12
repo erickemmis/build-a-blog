@@ -7,15 +7,15 @@
         <tr>
             <td><label for="title">Title</label></td>
             <td>
-                <input name="title" type="text">
-                <span class="error">{{title_error}}</span>
+                <input name="title" type="text" value="{{blog_post.title}}">
+                <span class="error">{{error.title}}</span>
             </td>
         </tr>
         <tr>
             <td><label for="body">Post</label></td>
             <td>
-                <textarea name="body" id="body"></textarea>
-                <span class="error">{{body_error}}</span>
+                <textarea name="body" id="body">{{blog_post.body}}</textarea>
+                <span class="error">{{error.body}}</span>
             </td>
         </tr>
     </table>

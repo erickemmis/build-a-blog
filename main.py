@@ -35,37 +35,29 @@ def blog():
 
 @app.route('/newpost', methods=["POST","GET"])
 def newpost():
+    error = {'title': '' , 'body': '' }
+    blog_post = {'title': '' , 'body': ''}
 
     if request.method == 'POST':
-        valid = True
-        title_error = ''
-        body_error = ''
 
-        title = request.form['title']
-        body = request.form['body']
+        blog_post = {'title': request.form['title'],
+                'body' : request.form['body']}
 
         #check if both title and body are there
-        if not title:
-            title_error = "Pleae fill in a title"
-            valid = False
-        if not body:
-            body_error = "Pleae fill in a body"
-            valid = False
+        if not blog_post['title']:
+            error['title'] = "Pleae fill in a title"
+        if not blog_post['body']:
+            error['body'] = "Pleae fill in a body"
 
 
-        if valid:
+        if not any(error.values()):
             #add and commit title and body in a new post if valid
-            new_post = Blog(title, body)
+            new_post = Blog(blog_post['title'], blog_post['body'])
             db.session.add(new_post)
             db.session.commit()
             return redirect('/blog?id={0}'.format(new_post.id))
-        else: 
-            return render_template('newpost.html', 
-                                           title_error=title_error,
-                                           body_error=body_error)
 
-
-    return render_template('newpost.html')
+    return render_template('newpost.html', error=error, blog_post=blog_post)
     
 
 if __name__ == '__main__':
